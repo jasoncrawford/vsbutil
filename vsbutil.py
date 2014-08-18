@@ -64,8 +64,8 @@ class VerySeriousButton(object):
 		btns = hid.enumerate(cls.USB_VID, cls.USB_PID)
 		return [
 			(btn["serial_number"],btn["release_number"],btn["path"]) for btn in btns
-			 if btn["manufacturer_string"] == cls.USB_MFR
-			 and btn["product_string"] == cls.USB_PROD
+			 if cls.USB_MFR.startswith(btn["manufacturer_string"].replace('\x00', ''))
+			 and cls.USB_PROD.startswith(btn["product_string"].replace('\x00', ''))
 			]
 	def __init__(self, serial=None):
 		btns = dict(((ser,(path,rls)) for (ser,rls,path) in self.list_connected()))
