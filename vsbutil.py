@@ -6,8 +6,8 @@ import argparse
 import struct
 import time
 from collections import OrderedDict
-import hidraw as hid
-#import hid
+#import hidraw as hid
+import hid
 
 class VerySeriousButtonNotFound(IOError):
 	pass
